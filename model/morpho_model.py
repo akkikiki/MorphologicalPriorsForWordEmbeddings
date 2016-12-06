@@ -71,7 +71,11 @@ class MorphoPrior:
 
     @property
     def cost(self):
-        return self.cost
+        return self._cost
+
+    @cost.setter
+    def cost(self, value):
+        self._cost = value
 
     @property
     def embeddings(self):

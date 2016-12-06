@@ -45,7 +45,7 @@ if __name__ == "__main__":
     D = { }
     D["word_to_ix"] = word_to_ix
     D["morpho_to_ix"] = morpho_to_ix
-    cPickle.dump(D, open("dicts.pkl", "w"))
+    cPickle.dump(D, open("dicts.pkl", "wb"))
     logging.debug('wrote dicts')
     # Load the pretrained vectors if available
     if options.pre is not None:

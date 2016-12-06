@@ -40,7 +40,10 @@ class NeuralLM:
 
         self.word_embeddings = self.word_embedding_lookup.W
 
-        self.y_hat, self.cost, self.cells = self.nn_fprop(x, y, num_layers)
+        temp_tuple = self.nn_fprop(x, y, num_layers)
+        self.y_hat = temp_tuple[0]
+        self.cost = temp_tuple[1]
+        self.cells = temp_tuple[2]
 
     def lstm_layer(self, h, n):
         """
@@ -88,7 +91,11 @@ class NeuralLM:
 
     @property
     def cost(self):
-        return self.cost
+        return self._cost
+
+    @cost.setter
+    def cost(self, value):
+        self._cost = value
 
     @property
     def embeddings(self):
