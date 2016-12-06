@@ -1,7 +1,7 @@
 config = {}
 config['batch_size'] = 25  # number of samples taken per each update
 config['hidden_size'] = 128  # number of hidden units per layer
-config['max_morphemes_per_word'] = 8 # NOTE: This needs to be set depending on the dataset.
+config['max_morphemes_per_word'] = 19 # NOTE: This needs to be set depending on the dataset.
 config['num_layers'] = 2
 config['learning_rate'] = 0.001
 config['learning_rate_decay'] = 0.97

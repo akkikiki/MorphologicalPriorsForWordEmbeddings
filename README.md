@@ -50,5 +50,7 @@ It will print statistics after each mini-batch.
 
 Parameters like batch size, embedding dimension, and the number of epochs can be changed in the config.py file.
 
+**CAUTION** Be sure to set change `max_morphemes_per_word` in `config.py` to whatever Morhphessor outputted (e.g. `Word with most morphemes has 19 morphemes`).
+
 Last, word vectors can be output in the format word dim1 dim2 ..., with 1 word per line, via the output_word_vectors.py script.
 Provide it a vocab of vectors to output, as well as a serialized network from training.
