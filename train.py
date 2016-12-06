@@ -1,6 +1,6 @@
 import theano
 import numpy as np
-import cPickle
+import _pickle as cPickle
 import argparse
 import sys
 from theano import tensor
@@ -39,8 +39,8 @@ if __name__ == "__main__":
     train_stream = get_stream(hdf5_file, 'train', batch_size)
     dev_stream = get_stream(hdf5_file, 'dev', batch_size)
     logging.debug('loaded data')
-    print "Number of words:", vocab_size
-    print "Number of morphemes:", morpho_vocab_size
+    print("Number of words:", vocab_size)
+    print("Number of morphemes:", morpho_vocab_size)
     # Save the word and morpheme indices to disk
     D = { }
     D["word_to_ix"] = word_to_ix
