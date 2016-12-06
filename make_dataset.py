@@ -51,7 +51,7 @@ if __name__ == "__main__":
                 max_morpheme_num = len(morpheme_decomp)
         for m in morpheme_decomp:
             morphos.add(m)
-    print "Word with most morphemes has", max_morpheme_num, "morphemes"
+    print("Word with most morphemes has", max_morpheme_num, "morphemes")
     morpho_vocab_size = len(morphos)
     morpho_to_ix = {morpho: i for i, morpho in enumerate(morphos)}
     ix_to_morpho = {i: morpho for i, morpho in enumerate(morphos)}
