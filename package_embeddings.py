@@ -1,19 +1,19 @@
 import argparse
 import sys
-import cPickle
+import _pickle as cPickle
 import numpy as np
 from blocks.extensions import saveload
 from morfessor import MorfessorIO
 
 def read_data(pickle_file, dict_file):
-    with open(pickle_file, "r") as model_f:
-        print "Loading Model ", pickle_file, "..."
+    with open(pickle_file, "rb") as model_f:
+        print("Loading Model ", pickle_file, "...")
         trained_model = saveload.load(model_f)
-        print "Done"
+        print("Done")
         param_values = trained_model.model.get_parameter_values()
         word_embeddings = param_values["/word_embeddings.W"]
         morpho_embeddings = param_values["/morpho_embeddings.W"]
-    with open(dict_file, "r") as dict_f:
+    with open(dict_file, "rb") as dict_f:
         D = cPickle.load(dict_f)
         word_to_num = D["word_to_ix"]
         morpho_to_num = D["morpho_to_ix"]
@@ -45,5 +45,5 @@ if __name__ == "__main__":
     D["word_embeddings"] = word_embeddings
     D["morpheme_embeddings"] = morpho_embeddings
 
-    with open(options.output_filename, "w") as f:
+    with open(options.output_filename, "wb") as f:
         cPickle.dump(D, f)
