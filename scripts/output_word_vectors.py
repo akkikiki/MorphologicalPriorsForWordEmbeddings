@@ -1,4 +1,6 @@
-import cPickle
+#import cPickle
+import six.moves.cPickle as cPickle
+#import _pickle as cPickle
 import argparse
 import morfessor
 import codecs
@@ -20,7 +22,7 @@ parser.add_argument("--sum-embed", action="store_true", help="Flag to generate e
 options = parser.parse_args()
 
 # Read in model
-D = cPickle.load(open(options.vectors, "r"))
+D = cPickle.load(open(options.vectors, "rb"))
 word_to_ix = D["word_to_ix"]
 morpho_to_ix = D["morpho_to_ix"]
 word_embeddings = D["word_embeddings"]
@@ -56,10 +58,10 @@ with codecs.open("word_and_morpho_embeds.txt", "w", "utf-8") as outfile:
                 morphologically_complex_words_count += 1
             embed = np.array([morpho_embeddings[i] for i in morpheme_indices]).sum(axis=0)
             output_word_vector(word, embed, outfile)
-        print "Total Number of words:", total
-        print "Total Number of Morphologically Complex Words (num morphemes > 1):", morphologically_complex_words_count
-        print "Total Number of Words for which we have at least 1 morpheme embedding:", have_atleast_1_morpho_count
-        print "Total Number of Words for which we have all morpheme embeddings:", have_all_morphos_count
+        print("Total Number of words:", total)
+        print("Total Number of Morphologically Complex Words (num morphemes > 1):", morphologically_complex_words_count)
+        print("Total Number of Words for which we have at least 1 morpheme embedding:", have_atleast_1_morpho_count)
+        print("Total Number of Words for which we have all morpheme embeddings:", have_all_morphos_count)
     else:
         for word in output_words:
             if word in word_to_ix:
@@ -74,7 +76,7 @@ with codecs.open("word_and_morpho_embeds.txt", "w", "utf-8") as outfile:
                 embed = np.array([ morpho_embeddings[morpho_to_ix.get(m, -1)] for m in morfessor_model.viterbi_segment(word)[0] ]).sum(axis=0)
                 output_word_vector(word, embed, outfile)
                 out_vocab += 1
-        print "Total Number of wordvectors.org words:", total
-        print "Total in Training Vocabulary:", in_vocab
-        print "Total out of Training Vocabulary", out_vocab
-        print "Percentage in-vocab:", in_vocab / float(total)
+        print("Total Number of wordvectors.org words:", total)
+        print("Total in Training Vocabulary:", in_vocab)
+        print("Total out of Training Vocabulary", out_vocab)
+        print("Percentage in-vocab:", in_vocab / float(total))
